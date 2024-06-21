@@ -1,0 +1,24 @@
+version: "3.4"
+
+services:
+  python:
+    image: "${REGISTRY}:${TAG}"
+    build:
+      context: ../src
+    logging:
+      driver: json-file
+      options:
+        max-file: '5'
+        max-size: 50m
+    restart: unless-stopped
+    volumes:
+      - ../src:/usr/src/app
+      - ../src/dist:/usr/src/app/dist
+      - ../src/venv:/usr/src/venv
+    ports:
+      - "8089:80" # ports 80, 8080, 80801...8085 is already taken
+    command: bash -c "while true; do sleep 30; done;" # Keeps the container running
+
+networks:
+  dbcsv2json_net:
+    external: true

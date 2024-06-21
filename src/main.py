@@ -20,7 +20,7 @@ def main(csv_file_path):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python csv_to_json.py <csv_file_path>")
+        print("Usage: python main.py <csv_file_path>")
         sys.exit(1)
 
     csv_file_path = sys.argv[1]
